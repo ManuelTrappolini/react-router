@@ -24,7 +24,7 @@ export default function PostsCard({ post }) {
                     <div className="content" ><span><strong>Content:</strong> </span>{post.content}</div>
                     <div className="tags" >
                         {post.tags.map((tag, index) => <a
-                            href="#" key={index} style={{ color: colors[tag] }}>{tag}
+                            href="#" key={index} style={{ color: colors[tag] }}>{tag}  {''}
                         </a>)}
 
                     </div>
@@ -32,7 +32,7 @@ export default function PostsCard({ post }) {
                 </div>
 
             </div>
-        </div>
+        </div >
 
 
     )
