@@ -30,11 +30,25 @@ nav {
 
 }
 
+.page-title {
+  text-align: center;
+  background-color: rgb(221, 216, 216);
+  ;
+}
+
+
+
 .main {
   padding-left: 2rem;
-  padding-top: 2rem;
+  padding-top: 1rem;
   background-color: rgb(221, 216, 216);
   height: calc(100vh - 140px);
+
+  p {
+    font-size: 1.3rem;
+    line-height: 2.5rem;
+    padding-top: 2rem;
+  }
 }
 
 footer {
@@ -88,3 +102,5 @@ footer {
   margin-bottom: 1rem;
   gap: 1rem;
 }
+
+.img-about-us {}

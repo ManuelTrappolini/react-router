@@ -107,13 +107,16 @@ export default function PostPage() {
 
 
     return (
-        <div className="containter pt-5">
+        <>
 
-            <form onSubmit={handleFormSubmit}>
+            <div className="containter pt-3">
+                <h2 className='page-title pb-5 '>Posts' List</h2>
 
-                <div className="input-group mb-3">
+                <form onSubmit={handleFormSubmit}>
 
-                    <label htmlFor="post" className='farm-label m-3'></label>
+
+
+
                     <div className="input-group mb-3">
                         <input type="text"
                             className="form-control"
@@ -172,29 +175,29 @@ export default function PostPage() {
                         />
                         <label className="form-check-label" htmlFor=""> Published </label>
                     </div>
-                </div>
 
 
-            </form>
 
-            <ul>
-                {postsData.data ? postsData.data.map((post, index) => (
-                    <div className="col" key={post.id} >
-                        <div className="card m-3">
-                            <li className='m-2'><h3>{post.title}:</h3></li>
-                            <li className='m-2'><img src={`http://127.0.0.1:3002/${post.image}`} height={250} width={250} alt="" /></li>
-                            <li className='m-2'>{post.content}</li>
-                            <li className='m-2'><span className='tags'>{`${post.tags} ${" "} `}</span> </li>
-                            <button onClick={handleDeleteClick} data-index={index} className='btn btn-danger mb-3 mt-3'>Delete Post</button>
+                </form>
 
+                <ul>
+                    {postsData.data ? postsData.data.map((post, index) => (
+                        <div className="col" key={post.id} >
+                            <div className="card m-3">
+                                <li className='m-2'><h3>{post.title}:</h3></li>
+                                <li className='m-2'><img src={`http://127.0.0.1:3002/${post.image}`} height={250} width={250} alt="" /></li>
+                                <li className='m-2'>{post.content}</li>
+                                <li className='m-2'><span className='tags'>{`${post.tags} ${" "} `}</span> </li>
+                                <button onClick={handleDeleteClick} data-index={index} className='btn btn-danger mb-3 mt-3'>Delete Post</button>
+
+                            </div>
                         </div>
-                    </div>
-                ))
-                    : <p>no result yet</p>
-                }
-            </ul >
-        </div >
-
+                    ))
+                        : <p>no result yet</p>
+                    }
+                </ul >
+            </div >
+        </>
     )
 }
 
