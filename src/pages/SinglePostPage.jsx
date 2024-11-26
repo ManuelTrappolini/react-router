@@ -2,14 +2,19 @@ import { Navigate } from "react-router-dom"
 import { useParams } from "react-router-dom"
 import { useEffect, useState } from "react";
 import AppPagination from "../components/AppPagination";
+import { useNavigate } from "react-router-dom";
+import NavigateButton from "../components/NavigateButton";
+
 
 
 export default function SinglePostPage() {
     const [post, setPost] = useState()
     const [activePage, setActivePage] = useState()
-    const [formData, setFormData] = useState()
+    const navigate = useNavigate()
     const { id } = useParams();
-    console.log(id);
+    const [count, setCount] = useState(0)
+
+    //console.log(id);
     const url = `http://127.0.0.1:3002/posts/${id}`
     //console.log(url);
 
@@ -27,35 +32,41 @@ export default function SinglePostPage() {
                 console.log(err);
 
             })
+
+
     },
         [])
 
-    function handlePaginationButtonClick(e) {
-
-        console.log(e.target);
-
-        /* find the url */
-
-        const url = e.target.getAttribute('data-url')
-        console.log(url);
 
 
-        /* fecth data */
 
-        fetchData(url)
-
-        /* find out if next wad clicked prev or next */
-        const action = e.target.getAttribute('data-action')
-        // console.log(action);
-
-        if (action === 'prev') {
-            /* decrement active page */
-            setActivePage(activePage - 1)
-        } else {
-            /* increment page */
-            setActivePage(activePage + 1)
-        }
-    }
+    /*  function handlePaginationButtonClick(e) {
+ 
+ 
+ 
+        
+ 
+         const url = `http://127.0.0.1:3002/posts/${id}`
+         console.log(navigate);
+ 
+ 
+         
+ 
+         fetch(url)
+ 
+         
+         const action = e.target.getAttribute('data-action')
+         // console.log(action);
+ 
+         if (action === 'prev') {
+             
+             navigate('/posts/' + (parseInt(id) - 1))
+         } else {
+             
+ 
+             navigate('/posts/' + (parseInt(id) + 1))
+         }
+     } */
 
 
     return (
@@ -79,8 +90,8 @@ export default function SinglePostPage() {
 
 
                         </div>
-                        <AppPagination prevUrl={post.info?.prev} nextUrl={post.info?.next} activePage={activePage} pages={post?.info?.pages} handlePaginationClick={handlePaginationButtonClick} />
-
+                        {/* <AppPagination prevUrl={post.info?.prev} nextUrl={post.info?.next} activePage={activePage} pages={post?.info?.pages} handlePaginationClick={handlePaginationButtonClick} /> */}
+                        <NavigateButton />
                     </>
 
 

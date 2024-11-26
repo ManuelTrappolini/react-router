@@ -13,7 +13,8 @@ export default function AppPagination({ prevUrl, nextUrl, handlePaginationClick 
                     className='prev'
                     onClick={handlePaginationClick}
                     data-url={prevUrl}
-                    data-action="prev">
+                    data-action="prev"
+                >
                     Prev
                 </button>}
 
@@ -34,7 +35,8 @@ export default function AppPagination({ prevUrl, nextUrl, handlePaginationClick 
                     className='next'
                     onClick={handlePaginationClick}
                     data-url={nextUrl}
-                    data-action="next">
+                    data-action="next"
+                >
                     Next
                 </button>}
 
