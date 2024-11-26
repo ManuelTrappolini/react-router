@@ -88,26 +88,25 @@ export default function PostsPage() {
 
     }
 
-    function handleDeleteClick(e) {
+    function handleDeleteClick(id) {
         console.log('clicked', postsData);
-        e.preventDefault()
+        id.preventDefault()
 
-
-        const id = Number(e.target.getAttribute('data-id'))
-        console.log(e.target.getAttribute('data-id'));
+        const postIndexToTrash = Number(id.target.getAttribute('data-id'))
+        console.log(postIndexToTrash);
         console.log('form data:', postsData.data.id);
 
 
 
-        fetch(`http://127.0.0.1:3002/posts/` + id, {
+        fetch(`http://127.0.0.1:3002/posts/${postIndexToTrash}`, {
 
             method: 'DELETE',
             headers: { 'Content-Type': 'application/json' }
         })
             .then(res => res.json())
-            .then(response => {
-                console.log(response)
-                setPosts(response.data)
+            .then(data => {
+                console.log(data)
+                setPostsData(data)
 
             })
     }
@@ -188,14 +187,15 @@ export default function PostsPage() {
                 </form>
 
                 <ul>
-                    {postsData.data ? postsData.data.map((post, index) => (
+                    {postsData.data ? postsData.data.map((post, id) => (
                         <div className="col" key={post.id} >
                             <div className="card m-3">
                                 <li className='m-2'><h3>{post.title}:</h3></li>
                                 <li className='m-2'><img src={`http://127.0.0.1:3002/${post.image}`} height={250} width={250} alt="" /></li>
                                 <li className='m-2'>{post.content}</li>
                                 <li className='m-2'><span className='tags'>{`${post.tags} ${" "} `}</span> </li>
-                                <button onClick={handleDeleteClick} data-id={formData.id} className='btn btn-danger mb-3 mt-3'>Delete Post</button>
+                                <button onClick={handleDeleteClick} data-id={post.id} className='btn btn-danger mb-3 mt-3'>Delete Post</button>
+
 
                             </div>
                         </div>

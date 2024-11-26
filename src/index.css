@@ -3,6 +3,8 @@ li {
 
 }
 
+
+
 header {
   display: flex;
   justify-content: space-between;
@@ -103,4 +105,19 @@ footer {
   margin-top: 1rem;
   margin-bottom: 1rem;
   gap: 1rem;
+}
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  margin: 1rem 0;
+  gap: 1rem;
+
+  .prev,
+  .next {
+    border-radius: .25rem;
+    padding: 0.25rem 0.75rem;
+
+
+  }
 }

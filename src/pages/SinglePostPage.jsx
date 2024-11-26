@@ -1,14 +1,17 @@
 import { Navigate } from "react-router-dom"
 import { useParams } from "react-router-dom"
 import { useEffect, useState } from "react";
+import AppPagination from "../components/AppPagination";
 
 
 export default function SinglePostPage() {
     const [post, setPost] = useState()
+    const [activePage, setActivePage] = useState()
+    const [formData, setFormData] = useState()
     const { id } = useParams();
     console.log(id);
     const url = `http://127.0.0.1:3002/posts/${id}`
-    console.log(url);
+    //console.log(url);
 
 
     useEffect(() => {
@@ -26,6 +29,33 @@ export default function SinglePostPage() {
             })
     },
         [])
+
+    function handlePaginationButtonClick(e) {
+
+        console.log(e.target);
+
+        /* find the url */
+
+        const url = e.target.getAttribute('data-url')
+        console.log(url);
+
+
+        /* fecth data */
+
+        fetchData(url)
+
+        /* find out if next wad clicked prev or next */
+        const action = e.target.getAttribute('data-action')
+        // console.log(action);
+
+        if (action === 'prev') {
+            /* decrement active page */
+            setActivePage(activePage - 1)
+        } else {
+            /* increment page */
+            setActivePage(activePage + 1)
+        }
+    }
 
 
     return (
@@ -46,7 +76,10 @@ export default function SinglePostPage() {
 
 
                             </div>
+
+
                         </div>
+                        <AppPagination prevUrl={post.info?.prev} nextUrl={post.info?.next} activePage={activePage} pages={post?.info?.pages} handlePaginationClick={handlePaginationButtonClick} />
 
                     </>
 
