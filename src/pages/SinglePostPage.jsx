@@ -25,7 +25,12 @@ export default function SinglePostPage() {
             .then(res => res.json())
             .then(data => {
                 console.log(data);
-                setPost(data.data)
+                const keys = Object.keys(data)
+                if (keys.includes('error'))
+                    navigate('/404')
+                else {
+                    setPost(data.data)
+                }
 
             })
             .catch(err => {
@@ -40,33 +45,6 @@ export default function SinglePostPage() {
 
 
 
-    /*  function handlePaginationButtonClick(e) {
- 
- 
- 
-        
- 
-         const url = `http://127.0.0.1:3002/posts/${id}`
-         console.log(navigate);
- 
- 
-         
- 
-         fetch(url)
- 
-         
-         const action = e.target.getAttribute('data-action')
-         // console.log(action);
- 
-         if (action === 'prev') {
-             
-             navigate('/posts/' + (parseInt(id) - 1))
-         } else {
-             
- 
-             navigate('/posts/' + (parseInt(id) + 1))
-         }
-     } */
 
 
     return (
@@ -90,7 +68,7 @@ export default function SinglePostPage() {
 
 
                         </div>
-                        {/* <AppPagination prevUrl={post.info?.prev} nextUrl={post.info?.next} activePage={activePage} pages={post?.info?.pages} handlePaginationClick={handlePaginationButtonClick} /> */}
+
                         <NavigateButton />
                     </>
 
