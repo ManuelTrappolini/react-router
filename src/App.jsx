@@ -4,8 +4,9 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import './App.css'
 import DefaultLayout from './pages/DefaultLayout'
 import Home from './pages/Home'
-import PostPage from './pages/Posts'
+import PostsPage from './pages/Posts'
 import About from './pages/AboutUs'
+import SinglePostPage from './pages/SinglePostPage'
 
 
 
@@ -22,7 +23,8 @@ function App() {
           <Route element={<DefaultLayout />}>
             <Route path='/' element={<Home />} />
             <Route path='/about' element={<About />} />
-            <Route path='/posts' element={<PostPage />} />
+            <Route path='/posts' element={<PostsPage />} />
+            <Route path='/posts/:id' element={<SinglePostPage />} />
           </Route>
         </Routes>
       </BrowserRouter>

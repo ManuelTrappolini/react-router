@@ -36,7 +36,9 @@ nav {
   ;
 }
 
-
+.bg-grey {
+  background-color: rgb(221, 216, 216);
+}
 
 .main {
   padding-left: 2rem;

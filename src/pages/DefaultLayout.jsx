@@ -9,11 +9,11 @@ export default function DefaultLayout() {
         <>
             <AppHeader />
 
-            <main>
 
-                <Outlet />
 
-            </main>
+            <Outlet />
+
+
 
             <AppFooter />
 

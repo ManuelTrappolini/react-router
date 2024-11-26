@@ -1,5 +1,8 @@
-
+import { useParams } from 'react-router-dom'
 import { useState, useEffect } from 'react'
+
+
+
 
 const emptyPost = {
     title: "",
@@ -10,10 +13,11 @@ const emptyPost = {
 }
 
 
-export default function PostPage() {
+export default function PostsPage() {
     const [formData, setFormData] = useState(emptyPost)
     const [posts, setPosts] = useState('')
     const [postsData, setPostsData] = useState({})
+    const { id } = useParams();
 
     function handleClick(e) {
         fetchData()
@@ -84,23 +88,26 @@ export default function PostPage() {
 
     }
 
-    function handleDeleteClick(id) {
+    function handleDeleteClick(e) {
         console.log('clicked', postsData);
-
-        const postIndexToTrash = Number(id.target.getAttribute('data-index'))
-        console.log(postIndexToTrash);
-        console.log('form data:', postsData.data);
+        e.preventDefault()
 
 
+        const id = Number(e.target.getAttribute('data-id'))
+        console.log(e.target.getAttribute('data-id'));
+        console.log('form data:', postsData.data.id);
 
-        fetch(`http://127.0.0.1:3002/posts/${postIndexToTrash}`, {
+
+
+        fetch(`http://127.0.0.1:3002/posts/` + id, {
 
             method: 'DELETE',
             headers: { 'Content-Type': 'application/json' }
         })
             .then(res => res.json())
-            .then(data => {
-                console.log(data)
+            .then(response => {
+                console.log(response)
+                setPosts(response.data)
 
             })
     }
@@ -188,7 +195,7 @@ export default function PostPage() {
                                 <li className='m-2'><img src={`http://127.0.0.1:3002/${post.image}`} height={250} width={250} alt="" /></li>
                                 <li className='m-2'>{post.content}</li>
                                 <li className='m-2'><span className='tags'>{`${post.tags} ${" "} `}</span> </li>
-                                <button onClick={handleDeleteClick} data-index={index} className='btn btn-danger mb-3 mt-3'>Delete Post</button>
+                                <button onClick={handleDeleteClick} data-id={formData.id} className='btn btn-danger mb-3 mt-3'>Delete Post</button>
 
                             </div>
                         </div>
